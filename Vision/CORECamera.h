@@ -1,8 +1,8 @@
 #ifndef SRC_VISION_CORECAMERA_H_
 #define SRC_VISION_CORECAMERA_H_
 
-#include "opencv2/opencv.hpp"
-#include "opencv2/highgui/highgui.hpp"
+#include "opencv.hpp"
+#include "highgui/highgui.hpp"
 
 using namespace cv;
 namespace CORE {

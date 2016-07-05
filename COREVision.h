@@ -2,3 +2,6 @@
  * By CORE 2062
  */
 #include "Vision/CORECamera.h"
+int main() {
+
+}

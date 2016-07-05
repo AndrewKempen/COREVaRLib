@@ -2,26 +2,9 @@
 
 using namespace CORE;
 
-void CORESubsystemsManager::addSubsystem(CORESubsystem* subsystem) {
-	subsystems.push_back(subsystem);
+CORESubsystem::CORESubsystem() {
+	name = string(quote(this));
+	CORESubsystemsManager::addSubsystem(this);
 }
-void CORESubsystemsManager::robotInit() {
-	for (CORESubsystem* subsystem : subsystems) {
-		subsystem->robotInit();
-	}
-}
-void CORESubsystemsManager::teleopInit() {
-	for (CORESubsystem* subsystem : subsystems) {
-		subsystem->teleopInit();
-	}
-}
-void CORESubsystemsManager::teleop() {
-	for (CORESubsystem* subsystem : subsystems) {
-		subsystem->teleop();
-	}
-}
-void CORESubsystemsManager::teleopEnd() {
-	for (CORESubsystem* subsystem : subsystems) {
-		subsystem->teleopEnd();
-	}
-}
+
+vector<CORESubsystem*> CORESubsystemsManager::subsystems;

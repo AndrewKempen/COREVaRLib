@@ -1,8 +1,10 @@
 #ifndef SRC_CORELIBRARY_COREPID_H_
 #define SRC_CORELIBRARY_COREPID_H_
 #include <vector>
-#include "WPILIB.h"
-#include "../navx2.0/AHRS.h"
+
+#include "COREHardware.h"
+
+class COREAHRS;
 
 namespace CORE {
 class COREPID {
@@ -22,9 +24,9 @@ private:
 	}PID1, PID2;
 	double setPointValue,actualPosition;
 	bool calculated,enabled = false;
-	Timer timer;
+	COREHardware::CORETimer timer;
 	CANTalon *inputCANTalonDevice;
-	AHRS *inputGyro;
+	COREAHRS *inputGyro;
 	CANTalon *outputMotor;
 	inputDeviceType inputDevice;
 	outputDeviceType outputDevice;

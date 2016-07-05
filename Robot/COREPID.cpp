@@ -1,6 +1,6 @@
 #include "COREPID.h"
 
-#include "WPILIB.h"
+#include "COREHardware.h"
 
 using namespace CORE;
 
