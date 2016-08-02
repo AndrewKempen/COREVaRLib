@@ -1,4 +1,4 @@
-#include "COREJoystick.h"
+#include "../../Robotics/COREHardware/COREJoystick.h"
 
 using namespace CORE;
 using namespace CORE::COREHardware;

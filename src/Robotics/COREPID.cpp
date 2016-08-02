@@ -1,5 +1,4 @@
-#include "COREPID.h"
-
+#include <Robotics/COREPID.h>
 #include "COREHardware.h"
 
 using namespace CORE;
@@ -33,13 +32,14 @@ COREPID::PIDProfile *COREPID::getProfile(int profile) {
  * @param dProfile2Value The D constant for profile 2, Set to 0 to disable. Disabled by default
  * @param integralAccuracy The number of previous errors to use when calculating the Integral term. Set to 1 by default
  */
-COREPID::COREPID(double pProfile1Value, double iProfile1Value, double dProfile1Value, double pProfile2Value, double iProfile2Value, double dProfile2Value, int integralAccuracy) {
+COREPID::COREPID(PIDType PIDControllerType, double pProfile1Value, double iProfile1Value, double dProfile1Value, double pProfile2Value, double iProfile2Value, double dProfile2Value, int integralAccuracy) {
 	PID1.P = pProfile1Value;
 	PID1.I = iProfile1Value;
 	PID1.D = dProfile1Value;
 	PID2.P = pProfile2Value;
 	PID2.I = iProfile2Value;
 	PID2.D = dProfile2Value;
+	ControllerType = PIDControllerType;
 	if(integralAccuracy < 1) {
 		integralAccuracy = 1;
 	}
@@ -64,37 +64,33 @@ double COREPID::calculate(int profile) {
 	case inputDeviceType::AHRSInput:
 		actualPosition = inputGyro->GetAngle();
 		break;
-	case inputDeviceType::CANTalonInput:
-		actualPosition = inputCANTalonDevice->GetEncPosition();
-		break;
 	default:
 		break;
 	}
-	currentProfile->porportional = (setPointValue - actualPosition) * currentProfile->P;
-	currentProfile->mistake.insert(currentProfile->mistake.begin(), currentProfile->porportional);
-	double sum = 0;
-	for(int i = 1; i < (int) currentProfile->mistake.size(); i++) {
-		sum += currentProfile->mistake[i];
-	}
-	double time = timer.Get();
-	if(time == 0) {
-		currentProfile->output = actualPosition;
-		return 0;
+	if (ControllerType == Position) {
+		currentProfile->porportional = (setPointValue - actualPosition) * currentProfile->P;
+		currentProfile->mistake.insert(currentProfile->mistake.begin(), currentProfile->porportional);
+		double sum = 0;
+		for(int i = 1; i < (int) currentProfile->mistake.size(); i++) {
+			sum += currentProfile->mistake[i];
+		}
+		double time = timer.Get();
+		if(time == 0) {
+			currentProfile->output = actualPosition;
+			return 0;
+		}
+		else {
+			currentProfile->integral += (sum * time) * currentProfile->I;
+			currentProfile->derivative = ((currentProfile->mistake[0] - currentProfile->mistake[1]) / time) * currentProfile->D;
+			timer.Reset();
+			timer.Start();
+			currentProfile->output = currentProfile->porportional + currentProfile->integral + currentProfile->derivative;
+			return currentProfile->output;
+		}
 	}
 	else {
-		currentProfile->integral += (sum * time) * currentProfile->I;
-		currentProfile->derivative = ((currentProfile->mistake[0] - currentProfile->mistake[1]) / time) * currentProfile->D;
-		timer.Reset();
-		timer.Start();
-		currentProfile->output = currentProfile->porportional + currentProfile->integral + currentProfile->derivative;
-		switch(outputDevice) {
-		case outputDeviceType::CANTalonOutput:
-			outputMotor->Set(currentProfile->output);
-			break;
-		default:
-			break;
-		}
-		return currentProfile->output;
+		currentProfile->porportional = (setPointValue - actualPosition) * currentProfile->P;
+		currentProfile-derivative =
 	}
 }
 
@@ -121,37 +117,17 @@ void COREPID::setPoint(double setPoint) {
  * The position of the mechanism controlled by the PID loop
  * @param actualPosition The actual position of the mechanism
  */
-void COREPID::setActualPosition(double actualPosition) {
-	actualPosition = actualPosition;
-}
-
-/**
- * Bind the pointer to a CANTalon connected input device as an input to this PID loop
- * @param CANTalonInput A pointer to the CANTalon
- * @param feedbackDeviceType The type of the device connected to the CANTalon
- */
-void COREPID::bindInputDevice(CANTalon * CANTalonInput, CANTalon::FeedbackDevice feedbackDeviceType) {
-	inputDevice = inputDeviceType::CANTalonInput;
-	CANTalonInput->SetFeedbackDevice(feedbackDeviceType);
-	inputCANTalonDevice = CANTalonInput;
+void COREPID::setActualPosition(double actualPositionValue) {
+	actualPosition = actualPositionValue;
 }
 
 /**
  * Bind the pointer to a NAVX as an input device to this PID loop
  * @param NAVX A pointer to the NAVX
  */
-void COREPID::bindInputDevice(AHRS * NAVX) {
+void COREPID::bindInputDevice(COREAHRS * NAVX) {
 	inputDevice = inputDeviceType::AHRSInput;
 	inputGyro = NAVX;
-}
-
-/**
- * Bind the pointer to a CANTalon as an output to this PID loop
- * @param CANTalonOutput A pointer to the CANTalon
- */
-void COREPID::bindOutputDevice(CANTalon * CANTalonOutput) {
-	outputDevice = outputDeviceType::CANTalonOutput;
-	outputMotor = CANTalonOutput;
 }
 
 /**

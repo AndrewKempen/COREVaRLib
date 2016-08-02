@@ -62,8 +62,27 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<folderInfo id="cdt.managedbuild.config.gnu.cross.exe.debug.1104744751.1133166251" name="/" resourcePath="src/Vision">
+						<toolChain id="cdt.managedbuild.toolchain.gnu.cross.exe.debug.1222786118" name="Cross GCC" superClass="cdt.managedbuild.toolchain.gnu.cross.exe.debug" unusedChildren="">
+							<option id="cdt.managedbuild.option.gnu.cross.prefix.541714056.1023801702" name="Prefix" superClass="cdt.managedbuild.option.gnu.cross.prefix.541714056"/>
+							<option id="cdt.managedbuild.option.gnu.cross.path.1246856819.562569919" name="Path" superClass="cdt.managedbuild.option.gnu.cross.path.1246856819"/>
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="cdt.managedbuild.targetPlatform.gnu.cross" isAbstract="false" osList="all" superClass="cdt.managedbuild.targetPlatform.gnu.cross"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.c.compiler.736882162" name="Cross GCC Compiler" superClass="cdt.managedbuild.tool.gnu.cross.c.compiler.1261239456">
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.228913291" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.623195698" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1505235107">
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1637085888" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.cross.c.linker.629433904" name="Cross GCC Linker" superClass="cdt.managedbuild.tool.gnu.cross.c.linker.362679811"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.cpp.linker.1599758808" name="Cross G++ Linker" superClass="cdt.managedbuild.tool.gnu.cross.cpp.linker.1895838080"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.archiver.1344730487" name="Cross GCC Archiver" superClass="cdt.managedbuild.tool.gnu.cross.archiver.412234585"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.assembler.1961230356" name="Cross GCC Assembler" superClass="cdt.managedbuild.tool.gnu.cross.assembler.1047448065">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.588611463" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
 					<sourceEntries>
-						<entry excluding="Vision" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="src/Vision|Vision" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -119,7 +138,7 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.debug.726641626" name="MinGW C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.debug">
 								<option id="gnu.cpp.link.option.libs.242080904" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs"/>
 								<option id="gnu.cpp.link.option.paths.1338099881" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths"/>
-								<option id="gnu.cpp.link.option.flags.111229450" superClass="gnu.cpp.link.option.flags" value="-nostartfiles -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a,-rpath,/usr/local/frc/rpath-lib" valueType="string"/>
+								<option id="gnu.cpp.link.option.flags.111229450" name="Linker flags" superClass="gnu.cpp.link.option.flags" value="-nostartfiles -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a,-rpath,/usr/local/frc/rpath-lib" valueType="string"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1310514846" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -127,7 +146,7 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<folderInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.1947023072.473938791" name="/" resourcePath="Vision">
+					<folderInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.1947023072.473938791" name="/" resourcePath="src/Vision">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.mingw.exe.debug.659811384" name="MinGW GCC" superClass="cdt.managedbuild.toolchain.gnu.mingw.exe.debug" unusedChildren="">
 							<targetPlatform id="cdt.managedbuild.target.gnu.platform.mingw.exe.debug" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.mingw.exe.debug"/>
 							<tool command="as" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" id="cdt.managedbuild.tool.gnu.assembler.mingw.exe.debug.1718468616" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.mingw.exe.debug">
@@ -155,7 +174,7 @@
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.mingw.exe.debug.531066565" name="MinGW C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.mingw.exe.debug"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.debug.1175055151" name="MinGW C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.debug">
-								<option id="gnu.cpp.link.option.flags.1226012070" superClass="gnu.cpp.link.option.flags" value="-nostartfiles -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a,-rpath,/usr/local/frc/rpath-lib" valueType="string"/>
+								<option id="gnu.cpp.link.option.flags.1226012070" name="Linker flags" superClass="gnu.cpp.link.option.flags" value="-nostartfiles -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a,-rpath,/usr/local/frc/rpath-lib" valueType="string"/>
 							</tool>
 						</toolChain>
 					</folderInfo>
@@ -243,7 +262,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="Robot|navx2.0" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="Robotics|navx2.0" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -321,4 +340,5 @@
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
 	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
 </cproject>

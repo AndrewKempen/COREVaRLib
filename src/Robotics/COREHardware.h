@@ -5,7 +5,8 @@
 #define SIMULATION
 #endif
 
-#include "COREHardware/COREMotor.h"
 #include "COREHardware/CORETimer.h"
+#include "COREHardware/COREJoystick.h"
+#include "COREHardware/COREMotor.h"
 
 #endif

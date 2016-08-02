@@ -1,7 +1,8 @@
 #ifndef SRC_CORELIBRARY_COREHARDWARE_COREJOYSTICK_H_
 #define SRC_CORELIBRARY_COREHARDWARE_COREJOYSTICK_H_
 #include <vector>
-#include "../CORESubsystemsManager.h"
+
+#include "../../Robotics/CORESubsystemsManager.h"
 
 
 #ifndef SIMULATION
@@ -14,13 +15,13 @@ using namespace CORE;
 
 class COREJoystick {
 public:
-	static enum Axis {
+	enum Axis {
 		LeftX,
 		LeftY,
 		RightX,
-		RightY,
+		RightY
 	};
-	static enum Button {
+	enum Button {
 		DPadN,
 		DPadNE,
 		DPadE,
