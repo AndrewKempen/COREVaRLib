@@ -6,6 +6,7 @@
 
 namespace CORE {
 using namespace CORE::COREHardware;
+class COREAHRS;
 class COREPID {
 private:
 	enum inputDeviceType {
@@ -21,9 +22,9 @@ private:
 		double P,I,D,porportional,integral,derivative,output;
 		std::vector<double> mistake;
 	}PID1, PID2;
-	double setPointValue,actualPosition;
+	double setPointValue = 0, actualPosition = 0;
 	CORETimer timer;
-	COREAHRS * inputGyro;
+	std::shared_ptr<COREAHRS> inputGyro;
 	inputDeviceType inputDevice;
 	outputDeviceType outputDevice;
 	PIDProfile *getProfile(int profile);
