@@ -29,8 +29,8 @@ private:
 	PIDProfile *getProfile(int profile);
 public:
 	enum PIDType {
-		Position,
-		Velocity
+		Pos,
+		Vel
 	};
 	COREPID(PIDType PIDControllerType, double pProfile1Value, double iProfile1Value, double dProfile1Value, double pProfile2Value = 0, double iProfile2Value = 0, double dProfile2Value = 0, int integralAccuracy = 1);
 	double calculate(int profile = 1);

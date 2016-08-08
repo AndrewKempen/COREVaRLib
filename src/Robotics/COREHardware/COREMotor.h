@@ -26,8 +26,8 @@ public:
 		Voltage,
 		Percentage,
 		Current,
-		VelocityPID,
-		PositionalPID
+		VelPID,
+		PosPID
 	};
 	COREMotor(int port, controlMode controlMethod = Voltage);
 	COREMotor(int port, controlMode controlMethod = Voltage, double pProfile1Value = 0, double iProfile1Value = 0, double dProfile1Value = 0, double pProfile2Value = 0, double iProfile2Value = 0, double dProfile2Value = 0, int integralAccuracy = 1);

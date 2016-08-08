@@ -62,12 +62,12 @@ double COREPID::calculate(int profile) {
 	PIDProfile *currentProfile = getProfile(profile);
 	switch(inputDevice) {
 	case inputDeviceType::AHRSInput:
-		actualPosition = inputGyro->GetAngle();
+		//actualPosition = inputGyro->GetAngle();
 		break;
 	default:
 		break;
 	}
-	if (ControllerType == Position) {
+	if (ControllerType == Pos) {
 		currentProfile->porportional = (setPointValue - actualPosition) * currentProfile->P;
 		currentProfile->mistake.insert(currentProfile->mistake.begin(), currentProfile->porportional);
 		double sum = 0;
@@ -80,7 +80,7 @@ double COREPID::calculate(int profile) {
 			return 0;
 		}
 		else {
-			currentProfile->integral += (sum * time) * currentProfile->I;
+			currentProfile->integral += (sum * time) * currentProfile->I; //Technically an approximation of Integral
 			currentProfile->derivative = ((currentProfile->mistake[0] - currentProfile->mistake[1]) / time) * currentProfile->D;
 			timer.Reset();
 			timer.Start();
@@ -89,8 +89,7 @@ double COREPID::calculate(int profile) {
 		}
 	}
 	else {
-		currentProfile->porportional = (setPointValue - actualPosition) * currentProfile->P;
-		currentProfile-derivative =
+		return -1;
 	}
 }
 
