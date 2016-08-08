@@ -16,6 +16,20 @@ COREMotor<CANTalon>::COREMotor(int port, controlMode controlMethod):
 }
 
 template<>
+COREMotor<CANTalon>::COREMotor(int port, controlMode controlMethod = Voltage, double pProfile1Value = 0, double iProfile1Value = 0, double dProfile1Value = 0, double pProfile2Value = 0, double iProfile2Value = 0, double dProfile2Value = 0, int integralAccuracy = 1):
+	motorControlMode(controlMethod)
+{
+#ifndef SIMULATION
+	COREPID::PIDType PIDControllerType = motorControlMode == PosPID ? COREPID::PIDType::Pos : COREPID::PIDType::Vel;
+	motor = new CANTalon(port);
+	PIDController = new COREPID(PIDControllerType, pProfile1Value, iProfile1Value, dProfile1Value, pProfile2Value, iProfile2Value, dProfile2Value, integralAccuracy);
+
+#else
+
+#endif
+}
+
+template<>
 COREMotor<Jaguar>::COREMotor(int port, controlMode controlMethod):
 	motorControlMode(controlMethod)
 
